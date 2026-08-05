@@ -1,0 +1,16 @@
+{
+  "name": "cmdgenie-cli",
+  "version": "0.1.0",
+  "description": "Natural language to shell command CLI",
+  "type": "module",
+  "bin": {
+    "cmdgenie": "bin/cmdgenie"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}
