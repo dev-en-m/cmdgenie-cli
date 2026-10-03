@@ -1,19 +1,8 @@
 import { getApiKey, setApiKey, setProvider } from "./config.js";
 import { generateCommand } from "./openai.js";
+import { checkDestructive } from "./safety.js";
 
 const MAX_WORDS = 200;
-
-const DESTRUCTIVE_PATTERNS = [
-  { pattern: /\brm\s+-[a-z]*r[a-z]*f\b|\brm\s+-[a-z]*f[a-z]*r\b/i, reason: "recursive force delete" },
-  { pattern: /\bDROP\s+(TABLE|DATABASE)\b/i, reason: "drops a table/database" },
-  { pattern: /\bdocker\s+system\s+prune\b/i, reason: "prunes docker resources" },
-  { pattern: /\bmkfs\b/i, reason: "reformats a filesystem" },
-  { pattern: /\bdd\s+if=.*\bof=\/dev\//i, reason: "writes raw disk device" },
-  { pattern: /\bgit\s+push\s+.*--force\b/i, reason: "force-pushes, can overwrite remote history" },
-  { pattern: /\bchmod\s+-R\s+777\b/i, reason: "opens permissions recursively" },
-  { pattern: /:\(\)\s*\{\s*:\|:&\s*\};:/, reason: "fork bomb" },
-  { pattern: />\s*\/dev\/sd[a-z]\b/i, reason: "overwrites raw disk device" },
-];
 
 function sanitize(text) {
   const cleaned = text.replace(/[\x00-\x1F\x7F]/g, "").replace(/\s+/g, " ").trim();
@@ -21,10 +10,6 @@ function sanitize(text) {
   const wordCount = cleaned.split(" ").length;
   if (wordCount > MAX_WORDS) throw new Error(`Input too long (${wordCount} words, max ${MAX_WORDS}).`);
   return cleaned;
-}
-
-function checkDestructive(command) {
-  return DESTRUCTIVE_PATTERNS.filter((p) => p.pattern.test(command)).map((p) => p.reason);
 }
 
 async function main() {
