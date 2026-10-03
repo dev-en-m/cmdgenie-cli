@@ -12,5 +12,23 @@
   ],
   "dependencies": {
     "openai": "^4.0.0"
-  }
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-en-m/cmdgenie-cli.git"
+  },
+  "keywords": [
+    "cli",
+    "shell",
+    "openai",
+    "natural-language",
+    "command"
+  ]
 }
