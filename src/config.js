@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import readline from "node:readline";
 
-const CONFIG_PATH = path.join(os.homedir(), ".cmdgenierc");
+const CONFIG_PATH = path.join(os.homedir(), ".plsrc");
 
 function readConfig() {
   try {
