@@ -1,10 +1,10 @@
 {
-  "name": "cmdgenie-cli",
+  "name": "@devendr-alt/pls",
   "version": "0.1.0",
   "description": "Natural language to shell command CLI",
   "type": "module",
   "bin": {
-    "cmdgenie": "bin/cmdgenie"
+    "pls": "bin/pls"
   },
   "files": [
     "bin",

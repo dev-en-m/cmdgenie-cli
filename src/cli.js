@@ -33,19 +33,19 @@ async function main() {
   if (args[0] === "config") {
     if (args[1] === "set-key") {
       const key = args[2];
-      if (!key) throw new Error("Usage: cmdgenie config set-key <key>");
+      if (!key) throw new Error("Usage: pls config set-key <key>");
       setApiKey(key);
       console.log("API key saved.");
       return;
     }
     if (args[1] === "set-provider") {
       const name = args[2];
-      if (!name) throw new Error("Usage: cmdgenie config set-provider <name>");
+      if (!name) throw new Error("Usage: pls config set-provider <name>");
       setProvider(name);
       console.log(`Provider set to ${name}.`);
       return;
     }
-    throw new Error("Usage: cmdgenie config set-key|set-provider <value>");
+    throw new Error("Usage: pls config set-key|set-provider <value>");
   }
 
   const text = sanitize(args.join(" "));
